@@ -33,7 +33,10 @@ class Scanner(Thread):
         while True:
             now_paste = pyperclip.paste()
             if now_paste != last_paste:
-                self.window.set_content(translate(now_paste))
+                try:
+                    self.window.set_content(translate(now_paste))
+                except Exception:
+                    print('translate [%s] failed' % now_paste)
                 last_paste = now_paste
             time.sleep(0.5)
 
