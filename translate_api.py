@@ -18,7 +18,7 @@ def translate(content, from_lang='auto', to_lang='zh-CN'):
     content = urllib2.quote(content.encode('utf-8'))
     url = "http://translate.google.cn/m?hl=%s&sl=%s&q=%s" % (to_lang, from_lang, content)
     request = urllib2.Request(url, headers={'User-Agent': AGENT})
-    data = urllib2.urlopen(request).read().decode("utf-8")
+    data = urllib2.urlopen(request, timeout=3).read().decode("utf-8")
     expr = r'class="t0">(.*?)<'
     result = re.findall(expr, data)[0]
     return result

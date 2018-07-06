@@ -35,8 +35,8 @@ class Scanner(Thread):
             if now_paste != last_paste:
                 try:
                     self.window.set_content(translate(now_paste))
-                except Exception:
-                    print('translate [%s] failed' % now_paste)
+                except Exception as ex:
+                    print('translate [%s] failed, msg is [%s]' % (now_paste, ex.message))
                 last_paste = now_paste
             time.sleep(0.5)
 
